@@ -14,8 +14,18 @@
         }
     </style>
 </head>
-<script type="text/javascript"></script>
-<body>
+<script type="text/javascript" src=".\js\calender.js"></script>
+<script type="text/javascript">
+    let year = null;
+    let month = null;
+
+    function init() {
+        year = new Date().getFullYear();
+        month = new Date().getMonth();
+        makeCalender(year, month);
+    }
+</script>
+<body onload="init();">
     <header>
         <div class="calenderHeader">
             <span id="headerYear">2022</span><br>
@@ -29,29 +39,7 @@
         </div>
     </header>
     <main>
-        <div id="calender">
-            <table>
-                <tr>
-                    <th id="sun">日</th>
-                    <th id="mon">月</th>
-                    <th id="tue">火</th>
-                    <th id="wed">水</th>
-                    <th id="thu">木</th>
-                    <th id="fri">金</th>
-                    <th id="sat">土</th>
-                </tr>
-                <script>
-                    // 6*7マスのダミーカレンダーを作成
-                    for ( let i = 1; i < 7; i++) {
-                        document.write('<tr>');
-                        for (let j = 1; j < 8; j++) {
-                            document.write('<td>' + (i*j) + '</td>')
-                        }
-                        document.write('</tr>');
-                    }
-                </script>
-            </table>
-        </div>
+        <div id="calender"></div>
         <div id="inputArea">
             <p id="selectInfo"></p>
             <select id="hour">
