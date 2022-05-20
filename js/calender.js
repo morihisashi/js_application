@@ -55,6 +55,9 @@ function makeCalender(year, month) {
         if(dayOfWeek == 0 || checkHoliday(year, month, j) || checkFurikae(year, month, j)) {
             str += ' class="holiday"';
         }
+
+        // 日付選択時の処理
+        str += ' onclick="selectDay(this);" ';
         str += ' >' + j + '</td>';
         dayOfWeek++;
     }
@@ -72,4 +75,18 @@ function makeCalender(year, month) {
 
     // カレンダーの書き出し
     document.getElementById("calender").innerHTML = str;
+}
+
+// 日付選択時の処理
+function selectDay(e) {
+    // 選択された日付の年月日を取得
+    var year = e.getAttribute("year");
+    var month = e.getAttribute("month");
+    var day = e.getAttribute("day");
+    var dayOfWeek = '日月火水木金土'[e.getAttribute("dayOfWeek")];
+
+    // 選択した日付を表示
+    showInputArea();
+    document.getElementById("selectInfo").innerHTML = '<h2>' + 
+    month + '月' + day + '日 (' + dayOfWeek + ') の予定</h2>';
 }

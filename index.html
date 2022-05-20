@@ -31,6 +31,7 @@
         year = new Date().getFullYear();
         month = new Date().getMonth();
         makeCalender(year, month);
+        showCalender();
     }
 
     function initNext() {
@@ -40,6 +41,7 @@
             month = 1;
         }
         makeCalender(year, month);
+        showCalender();
     }
     
     function initLast() {
@@ -49,6 +51,17 @@
             month = 12;
         }
         makeCalender(year, month);
+        showCalender();
+    }
+
+    function showCalender() {
+        document.getElementById('calender').style.display = "inline";
+        document.getElementById('inputArea').style.display = "none";
+    }
+
+    function showInputArea() {
+        document.getElementById('calender').style.display = "none";
+        document.getElementById('inputArea').style.display = "inline";
     }
 </script>
 <body onload="init();">
