@@ -51,7 +51,11 @@ function makeCalender(year, month) {
             str += ' id="today"';
         }
 
-        str += '>' + j + '</td>';
+        // 日曜または休日かどうか判断
+        if(dayOfWeek == 0 || checkHoliday(year, month, j) || checkFurikae(year, month, j)) {
+            str += ' class="holiday"';
+        }
+        str += ' >' + j + '</td>';
         dayOfWeek++;
     }
 
