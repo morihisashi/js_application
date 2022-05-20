@@ -12,6 +12,10 @@
             background-color: #661800;
             color: #ffffff;
         }
+        #today {
+            font-weight: bold;
+            border: dotted 1px #333333;
+        }
     </style>
 </head>
 <script type="text/javascript" src=".\js\calender.js"></script>
@@ -24,6 +28,24 @@
         month = new Date().getMonth();
         makeCalender(year, month);
     }
+
+    function initNext() {
+        month++;
+        if ( month > 12 ) {
+            year++;
+            month = 1;
+        }
+        makeCalender(year, month);
+    }
+    
+    function initLast() {
+        month--;
+        if ( month <= 0 ) {
+            year--;
+            month = 12;
+        }
+        makeCalender(year, month);
+    }
 </script>
 <body onload="init();">
     <header>
@@ -32,9 +54,9 @@
             <span id="headerMonth">1</span>月
         </div>
         <div class="navMenu">
-            <a href="#" id="todayBtn">今日</a>
-            <a href="#">＜</a>
-            <a href="#">＞</a>
+            <a href="javascript:init();" id="todayBtn">今日</a>
+            <a href="javascript:initLast();">＜</a>
+            <a href="javascript:initNext();">＞</a>
             <a href="#" id="configBtn">設定</a>
         </div>
     </header>

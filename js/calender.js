@@ -41,6 +41,16 @@ function makeCalender(year, month) {
         str += ' month     = "' + month + '"';
         str += ' day       = "' + j + '"';
         str += ' dayOfWeek = "' + dayOfWeek + '"';
+
+        // 当日かどうか判断
+        if ( year == new Date().getFullYear()
+            && month == new Date().getMonth() + 1
+            && j == new Date().getDate()
+        )
+        {
+            str += ' id="today"';
+        }
+
         str += '>' + j + '</td>';
         dayOfWeek++;
     }
