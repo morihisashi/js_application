@@ -27,6 +27,7 @@
 <script type="text/javascript" src="./js/calendar.js"></script>
 <script type="text/javascript" src="./js/holiday.js"></script>
 <script type="text/javascript" src="./js/config.js"></script>
+<script type="text/javascript" src="./js/db.js"></script>
 <script type="text/javascript">
 
 	let year  = null;
@@ -73,7 +74,7 @@
 	}
 </script>
 
-<body onload="init();">
+<body onload="initDB();init();">
 	<header>
 		<div class="calendarHeader">
 			<span id="headerYear" ></span><br>
