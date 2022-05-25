@@ -30,4 +30,41 @@ function initDB() {
         db = event.target.result;
     }
 
+    // DBに値を登録する関数
+    function setValue() {
+
+        // パラメータ設定
+        let day = sessionStorage.getItem("day");
+        let hour = document.getElementById("hour").value;
+        let minute = document.getElementById("minute").value;
+        let memo = document.getElementById("memo").value;
+        let idx = String(year) + (("0" + month).slice(-2)) + (("0" + day).slice(-2));
+        let key = idx + hour + minute;
+
+        // 確保：トランザクション
+        const transaction = db.transaction([DB_STORE], "readwrite");
+        // 取得：オブジェクトストアー
+        const store = transaction.objectStore(DB_STORE);
+        // 実行：リクエスト
+        const request = store.put({
+            "yyyymmdd": idx,
+            "yyyymmddhhmm": key,
+            "hour": hour,
+            "minute": minute,
+            "memo": memo,
+            "date": new Date()
+        });
+
+        // 成功：リクエスト(put)
+        request.onsuccess = function (event) {
+            document.getElementById("hour").value = "00";
+            document.getElementById("minute").value = "00";
+            document.getElementById("memo").value = "";
+        }
+        // 失敗：リクエスト(put)
+        request.onerror = function (event) {
+            console.error(event.target.errorCode);
+        }
+    }
+
 }
